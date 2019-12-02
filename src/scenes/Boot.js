@@ -2,11 +2,11 @@ import Phaser from 'phaser'
 import WebFont from 'webfontloader'
 
 export default class extends Phaser.Scene {
-  constructor () {
+  constructor() {
     super({ key: 'BootScene' })
   }
 
-  preload () {
+  preload() {
     this.fontsReady = false
     this.fontsLoaded = this.fontsLoaded.bind(this)
     this.add.text(100, 100, 'loading fonts...')
@@ -15,20 +15,18 @@ export default class extends Phaser.Scene {
     this.load.image('loaderBar', './assets/images/loader-bar.png')
 
     WebFont.load({
-      google: {
-        families: ['Bangers']
-      },
+      google: { families: ['Bangers'] },
       active: this.fontsLoaded
     })
   }
 
-  update () {
+  update() {
     if (this.fontsReady) {
       this.scene.start('SplashScene')
     }
   }
 
-  fontsLoaded () {
+  fontsLoaded() {
     this.fontsReady = true
   }
 }
